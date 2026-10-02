@@ -1,0 +1,21 @@
+name: Host Unit Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gcc-tests:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - name: Check Out Source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Build And Run Unit Tests
+        run: make CC=gcc test

@@ -1,0 +1,26 @@
+# RT-Thread SCons 构建脚本
+#
+# 用法：把本仓库的 gateway 目录放到 RT-Thread BSP 的应用目录下，
+# 或在 BSP 的 SConstruct 里通过 SConscript 引入本文件，然后正常
+# `scons` 即可。src/ 下的协议与模型代码与平台无关，只有 port/ 下
+# 的 port_rtthread.c / port_hw_rtthread.c 依赖 RT-Thread API。
+#
+# 说明：本文件只做源码收集与头文件路径声明，不含任何第三方内核代码。
+
+import os
+from building import *
+
+cwd = GetCurrentDir()
+
+src = []
+src += Glob('src/*.c')
+src += Glob('port/port_rtthread.c')
+
+# 目标板上由 RT-Thread 的设备框架提供 UART/CAN/以太网与 Flash 驱动，
+# 因此这里不编译 PC 专用的 port_host.c / port_hw_stub.c / gw_host_sim.c。
+
+path = [os.path.join(cwd, 'include'), os.path.join(cwd, 'port')]
+
+group = DefineGroup('gw_gateway', src, depend=[''], CPPPATH=path)
+
+Return('group')

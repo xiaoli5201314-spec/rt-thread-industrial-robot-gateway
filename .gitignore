@@ -1,0 +1,32 @@
+# 构建产物
+build/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# 开发临时脚本与草稿
+.dev/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# 端到端验证的中间产物
+tools/_e2e_*.json
+tools/_e2e_*.log
