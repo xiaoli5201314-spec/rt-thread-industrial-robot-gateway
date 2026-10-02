@@ -45,6 +45,12 @@ make -B test
 - 没有 RT-Thread BSP 编译、烧录、板端 DMA/ISR、CAN 控制器或真实设备互操作结果。
 - 没有原理图、PCB、BOM、板型说明、真实 Flash 掉电保持或硬件保护试验。
 - 不排除源码已指出的满长 TCP ADU 池容量、存储线程栈预算、在线参数下发、总线 FAULT 恢复和最新槽载荷回退问题。
-- 不证明远端 GitHub Actions 已运行或通过；[CI](../.github/workflows/ci.yml) 只是配置了相同主机单元测试入口。
+- 本节的本地主机结果与远端 CI 分开记录；远端测试不替代 BSP 或真实设备验收。
 
 测试范围和未覆盖路径详见 [BUILD_AND_TEST.md](BUILD_AND_TEST.md)。后续增加新的环境、协议对端或板端结果时，应另列准确命令、配置、输出与跳过项，不把本条主机记录扩展成未经执行的结论。
+
+## 远端自动测试
+
+2026-10-03 核对发布提交 `b64141f` 的 [GitHub Actions 记录](https://github.com/xiaoli5201314-spec/rt-thread-industrial-robot-gateway/actions/runs/37053451197)，状态为 `completed / success`。
+工作流在 Ubuntu 22.04 执行 `make CC=gcc test`。
+后续提交的实时状态以首页徽章和对应 Actions 记录为准；远端主机测试仍不提供 RT-Thread 板端时延或真实实时调度验收。
